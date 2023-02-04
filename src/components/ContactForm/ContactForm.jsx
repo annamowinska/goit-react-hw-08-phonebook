@@ -7,37 +7,27 @@ class ContactForm extends Component {
     number: '',
   };
 
-  handleChange = name => evt => {
-    const { target } = evt;
-
-    this.setState(() => ({
-      [name]: target.value,
-    }));
+  handleChange = evt => {
+    const { name, value } = evt.target;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
-
-    const { onSubmit } = this.props;
-    onSubmit(this.state);
-    this.resetForm();
-  };
-
-  resetForm = () => {
-    this.setState(() => ({
-      name: '',
-      number: '',
-    }));
+    this.props.onSubmit({ ...this.state });
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
       <form className={css.form} onSubmit={this.handleSubmit}>
         <label className={css.label}>
           Name
           <input
-            onChange={this.handleChange('name')}
-            value={this.state.name}
+            id={this.loginInputId}
+            onChange={this.handleChange}
+            value={name}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -48,8 +38,8 @@ class ContactForm extends Component {
         <label className={css.label}>
           Number
           <input
-            onChange={this.handleChange('number')}
-            value={this.state.number}
+            onChange={this.handleChange}
+            value={number}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
