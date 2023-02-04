@@ -68,9 +68,9 @@ class App extends Component {
 
     return (
       <div className={css.box}>
-        <h2>Phonebook</h2>
+        <h2 className={css.title}>Phonebook</h2>
         <ContactForm onSubmit={this.addContact} />
-        <h2>Contacts</h2>
+        <h2 className={css.title}>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={visibleContacts}

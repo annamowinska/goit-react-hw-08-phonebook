@@ -14,7 +14,16 @@ class ContactForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.props.onSubmit({ ...this.state });
+    const { onSubmit } = this.props;
+    onSubmit(this.state);
+    this.clearForm();
+  };
+
+  clearForm = () => {
+    this.setState(() => ({
+      name: '',
+      number: '',
+    }));
   };
 
   render() {
@@ -25,6 +34,7 @@ class ContactForm extends Component {
         <label className={css.label}>
           Name
           <input
+            className={css.input}
             id={this.loginInputId}
             onChange={this.handleChange}
             value={name}
@@ -35,9 +45,11 @@ class ContactForm extends Component {
             required
           />
         </label>
+
         <label className={css.label}>
           Number
           <input
+            className={css.input}
             onChange={this.handleChange}
             value={number}
             type="tel"
@@ -47,7 +59,9 @@ class ContactForm extends Component {
             required
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }

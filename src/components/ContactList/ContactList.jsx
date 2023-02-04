@@ -2,17 +2,25 @@ import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, deleteContact }) => (
-  <ul>
-    {contacts.map(({ id, name, number }) => (
-      <li key={id} className={css.item}>
-        <p>{name}:</p>
-        <p>{number}</p>
-        <button type="submit" onClick={() => deleteContact(id)}>
-          Delete
-        </button>
-      </li>
-    ))}
-  </ul>
+  <table>
+    <tbody className={css.list}>
+      {contacts.map(({ id, name, number }) => (
+        <tr key={id} className={css.item}>
+          <td className={css.name}>{name}:</td>
+          <td className={css.number}>{number}</td>
+          <td>
+            <button
+              className={css.button}
+              type="submit"
+              onClick={() => deleteContact(id)}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
 );
 
 ContactList.propTypes = {
@@ -20,7 +28,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      number: PropTypes.number,
+      number: PropTypes.string,
     }).isRequired
   ),
   deleteContact: PropTypes.func.isRequired,

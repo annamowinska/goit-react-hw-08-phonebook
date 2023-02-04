@@ -1,11 +1,16 @@
-//import css from './ContactForm.module.css';
+import css from './Filter.module.css';
 import PropTypes from 'prop-types';
 
 const Filter = ({ value, onChange }) => (
-  <div>
-    <label>
+  <div className={css.box}>
+    <label className={css.label}>
       Find contacts by name
-      <input type="name" value={value} onChange={onChange} />
+      <input
+        className={css.input}
+        type="name"
+        value={value}
+        onChange={onChange}
+      />
     </label>
   </div>
 );
