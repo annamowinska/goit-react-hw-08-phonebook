@@ -15,15 +15,11 @@ class App extends Component {
   addContact = ({ name, number }) => {
     const normalizationName = name.toLowerCase();
 
-    let atContactList = false;
-    this.state.contacts.forEach(item => {
-      if (item.name.toLocaleLowerCase() === normalizationName) {
-        alert(`${name} is already in contacts.`);
-        atContactList = true;
-      }
-    });
-
-    if (atContactList) {
+    const alreadyInContacts = this.state.contacts.some(
+      ({ name }) => name.toLocaleLowerCase() === normalizationName
+    );
+    if (alreadyInContacts) {
+      alert(`${name} is already in contacts.`);
       return;
     }
 
@@ -95,7 +91,7 @@ class App extends Component {
             />
           </>
         ) : (
-          <h2>Contact list is empty</h2>
+          <h2 className={css['empty-list']}>Contact list is empty</h2>
         )}
       </div>
     );
