@@ -99,3 +99,4 @@ class App extends Component {
 }
 
 export default App;
+//sprawdzam co to sie zesrało
