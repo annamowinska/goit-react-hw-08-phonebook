@@ -1,15 +1,17 @@
 .box {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  padding: 20px;
 }
 
 .title {
   color: #9a8c98;
   font-size: 30px;
   font-weight: 700;
+  margin: 0;
+  padding-bottom: 15px;
 }
 
 .empty-list {
