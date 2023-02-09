@@ -43,8 +43,8 @@ class App extends Component {
     );
   };
 
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
+  changeFilter = evt => {
+    this.setState({ filter: evt.currentTarget.value });
   };
 
   deleteContact = contactId => {
@@ -61,8 +61,8 @@ class App extends Component {
       this.setState({
         contacts: JSON.parse(list),
       });
-    } catch (e) {
-      console.error(e);
+    } catch (evt) {
+      console.error(evt);
     }
   }
 
