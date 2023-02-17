@@ -10,7 +10,7 @@ const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
-  const addContact = ({ name, number }) => {
+  const handleAddContact = ({ name, number }) => {
     const normalizationName = name.toLowerCase();
 
     const alreadyInContacts = contacts.some(
@@ -63,7 +63,7 @@ const App = () => {
   return (
     <div className={css.box}>
       <h2 className={css.title}>Phonebook</h2>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm onSubmit={handleAddContact} />
       <h2 className={css.title}>Contacts</h2>
       {contacts.length > 0 ? (
         <>
