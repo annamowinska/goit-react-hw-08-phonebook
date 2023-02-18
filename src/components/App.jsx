@@ -10,6 +10,14 @@ const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
+    useEffect(() => {
+      JSON.parse(localStorage.getItem('contacts-list'));
+    }, []);
+
+    useEffect(() => {
+      localStorage.setItem('contacts-list', JSON.stringify(contacts));
+    }, [contacts]);
+
   const handleAddContact = ({ name, number }) => {
     const normalizationName = name.toLowerCase();
 
@@ -27,7 +35,7 @@ const App = () => {
       id: nanoid(),
     };
 
-    setContacts([...contacts, newContact]);
+    setContacts(contacts => [...contacts, newContact]);
   };
 
   const getContacts = () => {
@@ -44,21 +52,9 @@ const App = () => {
     );
   };
 
-  useEffect(() => {
-    const list = localStorage.getItem('contacts-list');
-    if (!list) return;
 
-    try {
-      setContacts(JSON.parse(list));
-    } catch (evt) {
-      console.error(evt);
-    }
-  }, []);
 
-  useEffect(() => {
-    const contactsListStringified = JSON.stringify(contacts);
-    localStorage.setItem('contacts-list', contactsListStringified);
-  }, [contacts]);
+  const visibleContacts = getContacts();
 
   return (
     <div className={css.box}>
@@ -71,7 +67,7 @@ const App = () => {
             value={filter}
             onChange={evt => setFilter(evt.currentTarget.value)}
           />
-          <ContactList contacts={getContacts()} deleteContact={deleteContact} />
+          <ContactList contacts={visibleContacts} deleteContact={deleteContact} />
         </>
       ) : (
         <h2 className={css['empty-list']}>Contact list is empty</h2>
