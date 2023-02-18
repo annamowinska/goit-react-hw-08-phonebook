@@ -7,16 +7,14 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('contacts-list')) ?? []
+  );
   const [filter, setFilter] = useState('');
 
-    useEffect(() => {
-      JSON.parse(localStorage.getItem('contacts-list'));
-    }, []);
-
-    useEffect(() => {
-      localStorage.setItem('contacts-list', JSON.stringify(contacts));
-    }, [contacts]);
+  useEffect(() => {
+    localStorage.setItem('contacts-list', JSON.stringify(contacts));
+  }, [contacts]);
 
   const handleAddContact = ({ name, number }) => {
     const normalizationName = name.toLowerCase();
@@ -52,8 +50,6 @@ const App = () => {
     );
   };
 
-
-
   const visibleContacts = getContacts();
 
   return (
@@ -67,7 +63,10 @@ const App = () => {
             value={filter}
             onChange={evt => setFilter(evt.currentTarget.value)}
           />
-          <ContactList contacts={visibleContacts} deleteContact={deleteContact} />
+          <ContactList
+            contacts={visibleContacts}
+            deleteContact={deleteContact}
+          />
         </>
       ) : (
         <h2 className={css['empty-list']}>Contact list is empty</h2>
