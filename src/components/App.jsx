@@ -36,21 +36,15 @@ const App = () => {
     setContacts(contacts => [...contacts, newContact]);
   };
 
-  const getContacts = () => {
-    const normalizationFilter = filter.toLowerCase();
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizationFilter)
-    );
-  };
-
   const deleteContact = contactId => {
     setContacts(prevContacts =>
       prevContacts.filter(contact => contact.id !== contactId)
     );
   };
 
-  const visibleContacts = getContacts();
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <div className={css.box}>
