@@ -7,7 +7,7 @@ import { deleteContact, fetchContacts } from 'redux/operations';
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
-  //const filter = useSelector(state => state.filter.value);
+  //const filter = useSelector(state => state.contacts.filter);
   console.log('contacts:', contacts);
 
   useEffect(() => {
