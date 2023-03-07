@@ -2,12 +2,12 @@ import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact, fetchContacts, updateFilter } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/operations';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
-  //const filter = useSelector(updateFilter);
+  //const filter = useSelector(state => state.contacts.filter);
   console.log('contacts:', contacts);
 
   useEffect(() => {

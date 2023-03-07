@@ -3,7 +3,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-  updateFilter,
+  filteredContact,
 } from './operations';
 
 const contactsSlice = createSlice({
@@ -25,7 +25,7 @@ const contactsSlice = createSlice({
         contact => contact.id !== action.payload
       );
     },
-    [updateFilter.fulfilled]: (state, action) => {
+    [filteredContact.fulfilled]: (state, action) => {
       state.filter = action.payload;
     },
   },

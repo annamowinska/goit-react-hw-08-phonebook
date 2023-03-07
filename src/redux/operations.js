@@ -39,8 +39,8 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const updateFilter = createAsyncThunk(
-  'contacts/updateFilter',
+export const filteredContact = createAsyncThunk(
+  'contacts/filteredContact',
   async filter => {
     await axios.put('filter', { filter });
     return filter;
