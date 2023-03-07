@@ -1,36 +1,47 @@
 import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact, fetchContacts, updateFilter } from 'redux/operations';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
+  //const filter = useSelector(updateFilter);
+  console.log('contacts:', contacts);
 
-  const filter = useSelector(state => state.contacts.filter);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  const filteredContact = contacts.filter(
-    contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-      contact.number.includes(filter)
-  );
+  // const filteredContact = contacts.filter(
+  //   contact =>
+  //     contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+  //     contact.number.includes(filter)
+  // );
 
   const handleDeleteContact = id => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContact(id))
+      .then(() => {
+        console.log('Contact has been successfully deleted');
+      })
+      .catch(error => {
+        console.log(`Error: ${error.message}`);
+      });
   };
 
   return (
     <table>
       <tbody className={css.list}>
-        {filteredContact.map(({ id, name, number }) => (
-          <tr key={id} id={id} className={css.item}>
-            <td className={css.name}>{name}:</td>
-            <td className={css.number}>{number}</td>
+        {contacts.map(contact => (
+          <tr key={contact.id} id={contact.id} className={css.item}>
+            <td className={css.name}>{contact.name}:</td>
+            <td className={css.number}>{contact.number}</td>
             <td>
               <button
                 className={css.button}
                 type="submit"
-                onClick={() => handleDeleteContact(id)}
+                onClick={() => handleDeleteContact(contact.id)}
               >
                 Delete
               </button>
