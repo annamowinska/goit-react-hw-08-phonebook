@@ -36,9 +36,9 @@ const ContactForm = () => {
       alert(`${name} is already in contacts.`);
       return;
     }
-    const id = nanoid();
+    const idContact = nanoid();
 
-    dispatch(addContact({ id, name, number }));
+    dispatch(addContact({ idContact, name, number }));
     setName('');
     setNumber('');
   };

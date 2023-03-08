@@ -20,8 +20,9 @@ const ContactList = () => {
   //     contact.number.includes(filter)
   // );
 
-  const handleDeleteContact = id => {
-    dispatch(deleteContact(id))
+  const handleDeleteContact = idContact => {
+    dispatch(deleteContact(idContact));
+    dispatch(fetchContacts())
       .then(() => {
         console.log('Contact has been successfully deleted');
       })
@@ -33,15 +34,15 @@ const ContactList = () => {
   return (
     <table>
       <tbody className={css.list}>
-        {contacts.map(contact => (
-          <tr key={contact.id} id={contact.id} className={css.item}>
-            <td className={css.name}>{contact.name}:</td>
-            <td className={css.number}>{contact.number}</td>
+        {contacts.map(({ idContact, name, number }) => (
+          <tr key={idContact} id={idContact} className={css.item}>
+            <td className={css.name}>{name}:</td>
+            <td className={css.number}>{number}</td>
             <td>
               <button
                 className={css.button}
                 type="submit"
-                onClick={() => handleDeleteContact(contact.id)}
+                onClick={() => handleDeleteContact(idContact)}
               >
                 Delete
               </button>
@@ -56,7 +57,7 @@ const ContactList = () => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      idContact: PropTypes.string,
       name: PropTypes.string,
       number: PropTypes.string,
     }).isRequired
