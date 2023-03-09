@@ -7,42 +7,40 @@ import { deleteContact, fetchContacts } from 'redux/operations';
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
-  //const filter = useSelector(state => state.contacts.filter);
-  console.log('contacts:', contacts);
+  const filter = useSelector(state => state.contacts.filter);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  const filteredContact = contacts.filter(
+    contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.number.includes(filter)
+  );
 
-  // const filteredContact = (contacts.filter()
-  //   contact =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-  //     contact.number.includes(filter)
-  // );
-
-  const handleDeleteContact = idContact => {
-    dispatch(deleteContact(idContact));
-    dispatch(fetchContacts())
+  const handleDeleteContact = id => {
+    dispatch(deleteContact(id))
       .then(() => {
-        console.log('Contact has been successfully deleted');
+        dispatch(fetchContacts());
       })
       .catch(error => {
         console.log(`Error: ${error.message}`);
       });
   };
 
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <table>
       <tbody className={css.list}>
-        {contacts.map(({ idContact, name, number }) => (
-          <tr key={idContact} id={idContact} className={css.item}>
+        {filteredContact.map(({ id, name, number }) => (
+          <tr key={id} id={id} className={css.item}>
             <td className={css.name}>{name}:</td>
             <td className={css.number}>{number}</td>
             <td>
               <button
                 className={css.button}
                 type="submit"
-                onClick={() => handleDeleteContact(idContact)}
+                onClick={() => handleDeleteContact(id)}
               >
                 Delete
               </button>
@@ -57,7 +55,7 @@ const ContactList = () => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      idContact: PropTypes.string,
+      id: PropTypes.string,
       name: PropTypes.string,
       number: PropTypes.string,
     }).isRequired
