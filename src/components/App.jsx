@@ -51,5 +51,3 @@ export const App = () => {
     </Routes>
   );
 };
-
-//coś nie styka
