@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { contactsReducer } from './contact/slice';
+import { contactsReducer } from './contacts/slice';
 import { authReducer } from './auth/slice';
 import storage from 'redux-persist/lib/storage';
 import {

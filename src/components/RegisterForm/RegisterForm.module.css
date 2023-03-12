@@ -1,32 +1,21 @@
-.list {
-  margin-top: 20px;
-}
-
-.item {
+.form {
+  width: 320px;
   color: #f2e9e4;
 }
 
-.name {
-  font-size: 20px;
-  margin: 0;
-  padding-right: 20px;
-  padding-bottom: 5px;
-}
-
-.number {
-  font-size: 20px;
-  margin: 0;
-  padding-right: 20px;
-  color: #c9ada7;
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
 }
 
 .button {
   color: #22223b;
   background-color: #f2e9e4;
-  font-size: 10px;
+  font-size: 12px;
   padding: 5px 10px 5px 10px;
-  border-radius: 10px;
-  font-weight: 700;
+  border-radius: 15px;
+  font-weight: 750;
   border-style: none;
 }
 
