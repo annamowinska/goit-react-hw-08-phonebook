@@ -4,16 +4,6 @@
   gap: 12px;
 }
 
-.username {
-  font-weight: 700;
-  color: #f2e9e4;
-}
-
-.name {
-  color: #c9ada7;
-  font-size: 20px;
-}
-
 .button {
   color: #22223b;
   background-color: #f2e9e4;
@@ -22,6 +12,8 @@
   border-radius: 15px;
   font-weight: 800;
   border-style: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .button:focus,

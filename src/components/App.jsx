@@ -1,15 +1,11 @@
-//import css from './App.module.css';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks';
-//import ContactForm from './ContactForm/ContactForm';
-//import ContactList from './ContactList/ContactList';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
-//import Filter from './Filter/Filter';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -25,7 +21,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <b style={{ color: '#f2e9e4' }}>Refreshing user...</b>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -53,13 +49,5 @@ export const App = () => {
         />
       </Route>
     </Routes>
-
-    // <div className={css.box}>
-    //   <h2 className={css.title}>Phonebook</h2>
-    //   <ContactForm />
-    //   <h2 className={css.title}>Contacts</h2>
-    //   <Filter />
-    //   <ContactList />
-    // </div>
   );
 };

@@ -1,11 +1,14 @@
 .link {
-  display: inline-block;
+  display: row;
   text-decoration: none;
-  padding: 12px;
+  padding: 8px 10px 8px 10px;
   font-weight: 700;
-  color:#f2e9e4;
+  color: #f2e9e4;
+  border-radius: 4px;
 }
 
-.link.active {
-  color: #e84a5f;
+.link:focus {
+  color: #4a4e69;
+  background-color: #c9ada7;
+  border-radius: 15px;
 }
